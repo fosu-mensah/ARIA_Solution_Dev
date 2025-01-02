@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Aria.sqlite" uuid="ed495809-c680-43ad-ad99-14595fcbe531">
+    <data-source source="LOCAL" name="aria_db.sqlite" uuid="a57302eb-6608-401f-ae12-6df0e30eda15">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\solin\Desktop\ARIA_Solution_Dev\ARIA_Be\src\main\resources\Aria.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\SQLite\aria_db.sqlite</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>
