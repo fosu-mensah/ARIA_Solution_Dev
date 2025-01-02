@@ -16,9 +16,6 @@ public class User {
     @Column(name = "유저ID")
     private int userid;
 
-    @Column(name= "생성시간")
-    private LocalDateTime createdAt;
-
     @Column(name = "Token")
     private String token;
 
@@ -31,4 +28,6 @@ public class User {
     @Column(name = "Email")
     private String email;
 
+    @Column(name = "생성시간")
+    private LocalDateTime createdAt; // 필드 추가
 }
