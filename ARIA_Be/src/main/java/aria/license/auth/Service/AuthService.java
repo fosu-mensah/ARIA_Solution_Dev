@@ -36,7 +36,10 @@ public class AuthService {
         return token;
     }
 
-    public void logout(String username) {
+    public void logout(String token) {
+        // Validate the token and extract the username
+        String username = jwtUtil.validateToken(token);
+
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -44,4 +47,5 @@ public class AuthService {
         user.setToken(null);
         userRepository.save(user);
     }
+
 }
