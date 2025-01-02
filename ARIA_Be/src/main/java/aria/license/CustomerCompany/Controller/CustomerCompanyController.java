@@ -1,5 +1,8 @@
-package aria.license.CustomerCompany;
+package aria.license.CustomerCompany.Controller;
 
+import aria.license.CustomerCompany.Entitiy.CustomerCompany;
+import aria.license.CustomerCompany.Service.CustomerCompanyService;
+import aria.license.CustomerCompany.DTO.CustomerCompanyDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

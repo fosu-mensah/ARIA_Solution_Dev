@@ -1,5 +1,7 @@
-package aria.license.CustomerCompany;
+package aria.license.CustomerCompany.Service;
 
+import aria.license.CustomerCompany.Entitiy.CustomerCompany;
+import aria.license.CustomerCompany.Repository.CustomerCompanyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

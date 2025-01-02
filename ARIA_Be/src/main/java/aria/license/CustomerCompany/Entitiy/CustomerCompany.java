@@ -1,4 +1,4 @@
-package aria.license.CustomerCompany;
+package aria.license.CustomerCompany.Entitiy;
 
 import lombok.Getter;
 import lombok.Setter;
