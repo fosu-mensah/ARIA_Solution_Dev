@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ARIA_Be.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ARIA_Be.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ARIA_Solution_Dev.iml" filepath="$PROJECT_DIR$/.idea/ARIA_Solution_Dev.iml" />
     </modules>
   </component>
