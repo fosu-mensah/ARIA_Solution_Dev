@@ -25,13 +25,18 @@ public class JwtUtil {
 
     // 토큰 검증
     public String validateToken(String token) {
+        System.out.println("Received token: " + token);
         try {
+            // Bearer 접두사 제거
+            if (token.startsWith("Bearer ")) {
+                token = token.substring(7);
+            }
             return Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token)
                     .getBody()
-                    .getSubject(); // 토큰에서 username(subject) 반환
+                    .getSubject();
         } catch (JwtException e) {
             throw new RuntimeException("Invalid or expired token", e);
         }
