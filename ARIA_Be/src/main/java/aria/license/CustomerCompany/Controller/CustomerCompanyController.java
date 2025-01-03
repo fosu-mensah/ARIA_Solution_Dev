@@ -12,64 +12,35 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customer-company")
 public class CustomerCompanyController {
+    private final CustomerCompanyService service;
 
-    private final CustomerCompanyService customerCompanyService;
-
-    public CustomerCompanyController(CustomerCompanyService customerCompanyService) {
-        this.customerCompanyService = customerCompanyService;
+    public CustomerCompanyController(CustomerCompanyService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerCompany>> getAllCustomerCompany() {
-        List<CustomerCompany> customerCompanies = customerCompanyService.findAll();
-        return ResponseEntity.ok(customerCompanies);
+    public ResponseEntity<List<CustomerCompanyDTO>> getAll() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerCompany> getCustomerCompanyById(@PathVariable Long id) {
-        Optional<CustomerCompany> customerCompany = customerCompanyService.findById(id);
-        return customerCompany.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<CustomerCompanyDTO> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<CustomerCompany> createCustomerCompany(@RequestBody CustomerCompanyDTO customerCompanyDTO) {
-        // DTO -> Entity 변환
-        CustomerCompany customerCompany = new CustomerCompany();
-        customerCompany.setKoreanName(customerCompanyDTO.getKoreanName());
-        customerCompany.setEnglishName(customerCompanyDTO.getEnglishName());
-        customerCompany.setAdditionalName(customerCompanyDTO.getAdditionalName());
-        customerCompany.setLocation(customerCompanyDTO.getLocation());
-        customerCompany.setWebsite(customerCompanyDTO.getWebsite());
-        customerCompany.setDescription(customerCompanyDTO.getDescription());
-
-        CustomerCompany savedCustomerCompany = customerCompanyService.save(customerCompany);
-        return ResponseEntity.ok(savedCustomerCompany);
+    public ResponseEntity<CustomerCompanyDTO> create(@RequestBody CustomerCompanyDTO dto) {
+        return ResponseEntity.ok(service.save(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerCompany> updateCustomerCompany(
-            @PathVariable Long id, @RequestBody CustomerCompanyDTO customerCompanyDTO) {
-        Optional<CustomerCompany> existingCustomerCompany = customerCompanyService.findById(id);
-        if (existingCustomerCompany.isPresent()) {
-            CustomerCompany customerCompany = existingCustomerCompany.get();
-            customerCompany.setKoreanName(customerCompanyDTO.getKoreanName());
-            customerCompany.setEnglishName(customerCompanyDTO.getEnglishName());
-            customerCompany.setAdditionalName(customerCompanyDTO.getAdditionalName());
-            customerCompany.setLocation(customerCompanyDTO.getLocation());
-            customerCompany.setWebsite(customerCompanyDTO.getWebsite());
-            customerCompany.setDescription(customerCompanyDTO.getDescription());
-
-            CustomerCompany updatedCustomerCompany = customerCompanyService.save(customerCompany);
-            return ResponseEntity.ok(updatedCustomerCompany);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<CustomerCompanyDTO> update(@PathVariable Long id, @RequestBody CustomerCompanyDTO dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomerCompany(@PathVariable Long id) {
-        customerCompanyService.deleteById(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
